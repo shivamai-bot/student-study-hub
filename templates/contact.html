@@ -1,0 +1,67 @@
+
+{% extends "base.html" %}
+
+{% block title %}Contact | Student Study Hub{% endblock %}
+
+{% block content %}
+
+<section class="hero">
+    <h1>Contact Us</h1>
+    <p>Have a question or suggestion? Fill in the form below.</p>
+</section>
+
+<section style="margin-top: 30px;">
+    <h2>Send Us a Message</h2>
+
+    {% if message_sent %}
+        <div class="card" role="status">
+            <h3>Thank you, your form was submitted!</h3>
+            <p>
+                Your information passed the basic validation checks.
+                This demo does not send or permanently store messages.
+            </p>
+        </div>
+    {% else %}
+
+        {% if error_message %}
+            <div class="card" role="alert">
+                <p>{{ error_message }}</p>
+            </div>
+        {% endif %}
+
+        <form method="POST" action="{{ url_for('contact') }}">
+            <label for="name">Full Name</label>
+            <input
+                type="text"
+                id="name"
+                name="name"
+                maxlength="100"
+                required
+            >
+
+            <label for="email">Email Address</label>
+            <input
+                type="email"
+                id="email"
+                name="email"
+                maxlength="254"
+                required
+            >
+
+            <label for="message">Message</label>
+            <textarea
+                id="message"
+                name="message"
+                maxlength="2000"
+                required
+            ></textarea>
+
+            <button type="submit" class="button">
+                Submit Message
+            </button>
+        </form>
+
+    {% endif %}
+</section>
+
+{% endblock %}

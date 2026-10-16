@@ -1,0 +1,65 @@
+
+{% extends "base.html" %}
+
+{% block title %}Study Planner | Student Study Hub{% endblock %}
+
+{% block content %}
+
+<section>
+    <h1>My Study Planner</h1>
+    <p>Add your study tasks and track your progress.</p>
+
+    <form method="POST" action="{{ url_for('planner') }}">
+        <label for="task">Study task</label>
+
+        <input
+            type="text"
+            id="task"
+            name="task"
+            placeholder="Example: Study Python for 30 minutes"
+            maxlength="150"
+            required
+        >
+
+        <button type="submit" class="button">Add Task</button>
+    </form>
+</section>
+
+<section>
+    <h2>My Tasks</h2>
+
+    {% if tasks %}
+        <div class="card-grid">
+            {% for task in tasks %}
+                <article class="card">
+                    {% if task.completed %}
+                        <h3>✓ {{ task.name }}</h3>
+                        <p>Completed</p>
+                    {% else %}
+                        <h3>{{ task.name }}</h3>
+                        <p>Pending</p>
+                    {% endif %}
+
+                    <form
+                        method="POST"
+                        action="{{ url_for('complete_task', task_id=task.id) }}"
+                    >
+                        {% if task.completed %}
+                            <button type="submit" class="button">
+                                Mark as Pending
+                            </button>
+                        {% else %}
+                            <button type="submit" class="button">
+                                Mark as Completed
+                            </button>
+                        {% endif %}
+                    </form>
+                </article>
+            {% endfor %}
+        </div>
+    {% else %}
+        <p>No tasks yet. Add your first study task above!</p>
+    {% endif %}
+</section>
+
+{% endblock %}

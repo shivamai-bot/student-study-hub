@@ -1,0 +1,50 @@
+
+{% extends "base.html" %}
+
+{% block title %}Study Resources | Student Study Hub{% endblock %}
+
+{% block content %}
+
+<section class="hero">
+    <h1>Study Resources</h1>
+    <p>
+        Explore useful resources to improve your programming
+        and web development skills.
+    </p>
+</section>
+
+<section>
+    <h2>Learning Library</h2>
+
+    <div class="card-grid">
+        {% for resource in study_resources %}
+            <article class="card">
+                <h3>{{ resource.title }}</h3>
+
+                <p>{{ resource.description }}</p>
+
+                <a
+                    href="{{ resource.url }}"
+                    class="button"
+                    target="_blank"
+                    rel="noopener noreferrer"
+                >
+                    Explore Resource
+                </a>
+            </article>
+        {% endfor %}
+    </div>
+</section>
+
+<section class="card" style="margin-top: 25px;">
+    <h2>Study Tips</h2>
+
+    <ul>
+        <li>Set a clear goal before each study session.</li>
+        <li>Practice coding instead of only reading.</li>
+        <li>Take short breaks during long study sessions.</li>
+        <li>Review what you learned at the end of each day.</li>
+    </ul>
+</section>
+
+{% endblock %}

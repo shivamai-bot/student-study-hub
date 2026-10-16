@@ -1,0 +1,48 @@
+
+{% extends "base.html" %}
+
+{% block title %}Home | Student Study Hub{% endblock %}
+
+{% block content %}
+
+<section class="hero">
+    <h1>Welcome to Student Study Hub!</h1>
+
+    <p>
+        Your personal space for planning studies,
+        discovering learning resources, and staying organized.
+    </p>
+
+    <a href="{{ url_for('planner') }}" class="button">
+        Start Planning
+    </a>
+</section>
+
+<section>
+    <h2>Explore Our Features</h2>
+
+    <div class="card-grid">
+        <article class="card">
+            <h3>Study Planner</h3>
+            <p>
+                Organize your study tasks and track your progress.
+            </p>
+        </article>
+
+        <article class="card">
+            <h3>Study Resources</h3>
+            <p>
+                Explore useful learning links and study tips.
+            </p>
+        </article>
+
+        <article class="card">
+            <h3>Contact Us</h3>
+            <p>
+                Send a message or share your feedback.
+            </p>
+        </article>
+    </div>
+</section>
+
+{% endblock %}
